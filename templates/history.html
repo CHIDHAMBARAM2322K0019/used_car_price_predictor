@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction History</title>
+
+
+<!-- HEADER -->
+<header style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+">
+    <div>🚗 Car Assistant</div>
+    <div style="font-size:14px;">Used Car Price Prediction</div>
+</header>    
+    
+
+<style>
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#eef2f7,#d9e4f5);
+    margin:0;
+    padding:40px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#2c3e50;
+    letter-spacing:1px;
+}
+
+table{
+    width:85%;
+    margin:auto;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#34495e;
+    color:white;
+    padding:15px;
+    font-size:16px;
+}
+
+td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+tr:nth-child(even){
+    background:#f8f9fc;
+}
+
+tr:hover{
+    background:#ecf3ff;
+    transition:0.3s;
+}
+
+.price{
+    color:#27ae60;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Prediction History</h2>
+
+<table>
+
+<tr>
+<th>Brand</th>
+<th>Year</th>
+<th>KM Driven</th>
+<th>Fuel</th>
+<th>Predicted Price</th>
+<th>Date</th>
+</tr>
+
+{% for row in predictions %}
+
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>
+{% if row[3] == 1 %}
+Petrol
+{% elif row[3] == 2 %}
+Diesel
+{% elif row[3] == 3 %}
+CNG
+{% else %}
+Unknown
+{% endif %}
+</td>
+<td>₹ {{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
